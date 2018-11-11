@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.yusys.yusp.tool.repository.mapper.DataExportMapper" > 
+  <select id="selectAllData" resultType="map" parameterType="string"  statementType="CALLABLE">
+    select t.* from ${tableName} t
+  </select>
+  <select id="selectTotal" resultType="int" parameterType="string"  statementType="CALLABLE">
+    select count(*) from ${tableName} t
+  </select>
+</mapper>

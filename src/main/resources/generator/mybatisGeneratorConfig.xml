@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="generator/mybatisGenerator.properties" />
+	<!-- 指定数据连接驱动jar地址 -->
+	<!-- <classPathEntry location="${classPath}" /> -->
+	<!-- 一个数据库一个context -->
+	<context id="MysqlTables" targetRuntime="MyBatis3">
+
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /><!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver}" connectionURL="${jdbc_url}" userId="${jdbc_user}" password="${jdbc_password}">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="cn.com.yusys.yusp.tool.domain" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- ANNOTATEDMAPPER MIXEDMAPPER XMLMAPPER -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.yusys.yusp.tool.repository.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="methodNameCalculator" value="extended" />
+		</javaClientGenerator>
+
+
+		<table tableName="${table_name}" domainObjectName="${table_domain_name}" schema="${jdbc_current_schema}" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" modelType="flat">
+			<property name="constructorBased" value="false" />
+			<property name="ignoreQualifiersAtRuntime" value="true" />
+			<property name="selectAllOrderByClause" value="id" />
+		</table>
+
+	</context>
+</generatorConfiguration>
